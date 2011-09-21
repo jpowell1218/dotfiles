@@ -1,0 +1,293 @@
+" color railscasts railscasts2 railscasts+ solarized jellybeans
+" colorscheme tir_black
+" colorscheme solarized
+" colorscheme railscasts
+
+syntax enable
+set background=dark
+colorscheme solarized
+
+nmap <space> :
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set guifont=Menlo:h12.00
+
+" bind control-l to hashrocket
+imap <C-l> <Space>=><Space>" "
+imap <C-r> <Space><%= %><Space>
+
+" disable arrow keys experiemnt 2/15/2010
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+
+" Allows cmd-r to execute ruby code in Vim (in conjunction with plugin)
+command! FR set filetype=ruby
+
+" Disable audio bell
+set vb
+
+" http://lucapette.com/vim/rails/vim-for-rails-developers-indenting-code/
+map   <silent> <F5> mmgg=G`m^
+imap  <silent> <F5> <Esc> mmgg=G`m^
+
+" Exhuberent C-Tags config
+set tags=./tags
+
+" Leader b = git blame on all items currenty selected in visual mode
+vmap <Leader>b :<C-U>! git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+if has("autocmd")
+  filetype indent on
+  autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd BufWritePost .vimrc source ~/.gvimrc
+endif
+
+set tabstop=2
+set shiftwidth=2
+set smartindent
+set autoindent
+
+" Switch between buffers without saving
+set hidden
+
+" Write existing file when switching between files
+" set autowrite
+
+" Reduce delay between leader key and subsequent command
+set timeoutlen=500
+
+" Better line wrapping
+set nowrap
+
+" Slightly higher line height
+set linespace=3
+
+" Always show the status line
+set laststatus=2
+
+" Hide MacVim toolbar
+set go-=T
+
+" Hard-wrap paragraphs of text
+nnoremap <leader>q gqip
+
+" Hide Mouse when typing
+set mousehide
+
+" Opens a vertical split and switches over using <leader>v (\v)
+nnoremap <leader>v <C-w>v<C-w>l
+
+" Splits windows below the current window
+set splitbelow
+
+" Auto-completion menu
+set wildmode=list:longest
+
+" Map code completion to , + tab
+imap ,<tab> <C-x><C-o>
+
+" http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+set completeopt=longest,menuone
+
+" automatically change working directory to the path of active buffer
+" autocmd BufEnter * lcd %:p:h
+
+" Hide mouse while typing
+set mousehide
+
+"Opens a vertical split window and switches to it (\v)
+nnoremap <leader>v <C-w>v<C-w>l
+
+" Map escape key to jj
+imap jj <esc>
+
+" Delete all buffers (via Derek Wyatt) (ctrl da)
+nmap <silent> ,da :exec "1,", bufnr('$') . "bd"<cr>
+
+" Vim indent guides customization | https://github.com/nathanaelkane/vim-indent-guides
+set ts=2 sw=2 et
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=DarkSeaGreen   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=DarkOliveGreen ctermbg=4
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=LightSteelBlue4 ctermbg=3
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=RoyalBlue4 ctermbg=4
+
+" http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+:set completeopt=longest,menuone
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" DAS - Vim Navigation Screencast
+" Open files with <leader>f
+" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+" Open files, limited to the directory of the current file, with <leader>gf
+" This requires the %% mapping found below.
+" map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
+map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts<cr>
+
+:set guicursor
+:set cursorline
+" :set cursorcolumn
+
+" :hi CursorLine   cterm=NONE ctermbg=slategrey ctermfg=white guibg=slategrey guifg=white
+" :hi CursorLine   cterm=NONE ctermbg=slategrey ctermfg=white guibg=slategrey guifg=white
+" :hi CursorColumn guibg=grey24 guifg=white
+" :hi CursorLine guibg=grey24 guifg=white
+" :hi CursorLine guibg=DarkBlue
+" :hi CursorLine guibg=DarkSlateGray
+:hi CursorLine guibg=gray8
+
+:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+" autocmd WinEnter * setlocal cursorline
+" autocmd WinLeave * setlocal nocursorline
+
+" disable side scrollbar
+set guioptions-=r
+set spell
+set cpoptions+=$
+
+" Fix for Bufferator auto expanding the window per the plugin's author: jeet@ku.edu
+let g:buffergator_autoexpand_on_split = 0
+
+" When using Cmd-T have Vim open file in new tab
+" let g:CommandTAcceptSelectionMap = '<C-t>'
+" let g:CommandTAcceptSelectionTabMap = '<CR>'
+
+" Ruby Autocomplete from: http://www.cuberick.com/2008/10/ruby-autocomplete-in-vim.html
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" Improve autocomplete menu color
+
+" Change EasyMotion binding
+let g:EasyMotion_leader_key = '<Leader>w'
+highlight PMenu gui=bold guibg=#CECECE guifg=#444444 ctermbg=238
+
+" Incremental search (ala google): http://amix.dk/blog/post/19083#10-kick-ass-Vim-tips
+set incsearch
+
+" show current git branch in Vim status bar: http://amix.dk/blog/post/19571#Displaying-Gits-current-branch-in-Bash-and-Vim
+"Git branch
+function! GitBranch()
+    let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
+    if branch != ''
+        return '   Git Branch: ' . substitute(branch, '\n', '', 'g')
+    en
+    return ''
+endfunction
+
+function! CurDir()
+    return substitute(getcwd(), '/Users/amir/', "~/", "g")
+endfunction
+
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    en
+    return ''
+endfunction
+
+" Format the statusline
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L%{GitBranch()}
+
+" visual super search: http://amix.dk/blog/post/19334#Vim-tips-Visual-Search
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction 
+
+" From an idea by Michael Naumann
+function! VisualSearch(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+"Basically you press * or # to search for the current selection
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+vnoremap <silent> gv :call VisualSearch('gv')<CR>
+
+"=====[ FOLDING ]=================================================
+" za:toggle  zm:fold, zM:foldAll, zr:unfold, zR:unfoldAll, help :folding
+"==[ Settings ] http://smartic.us/2009/04/06/code-folding-in-vim
+
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+"==[ Javascript ] http://amix.dk/blog/post/19132#Folding-in-Vim
+function! JavaScriptFold() 
+    setl foldmethod=syntax
+    setl foldlevelstart=1
+    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+    function! FoldText()
+        return substitute(getline(v:foldstart), '{.*', '{...}', '')
+    endfunction
+    setl foldtext=FoldText()
+endfunction
+au FileType javascript call JavaScriptFold()
+au FileType javascript setl fen
+
+"==[ ?? ] Need to research
+" Folding Shortcut - fold tags with leader + fo
+" nnoremap <leader>fo Vatzf
+
+" Folding Shortcut - fold tags with leader + ft
+" nnoremap <leader>fc Vatzf
+
+" Folding Shortcut - fold tags with leader + cf
+" nnoremap <leader>cf Vatzf
+
+
+"=====[MISC]=====================================================
+" Strip all trailing whitespace
+nnoremap <leader>j :%s/\s\+$//<cr>:let @/=''<CR>
+
+"=====[MARKDOWN TO HTML]=====================================================
+" :set ft=mkd
+nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
+
+"=====[INCREASE LINE NUMBER MARGINS]=====================================================
+set nuw=6
+hi LineNr  guifg=#505050   guibg=Black
+hi Normal  guifg=White     guibg=Black

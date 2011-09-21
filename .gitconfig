@@ -1,0 +1,23 @@
+[user]
+	name = Jeff Powell
+	email = powellj@mac.com
+
+[alias]
+  g = git
+	  co = checkout
+  	st = status
+    ci = commit
+    cp = cherrypick
+    dt = difftool
+    p = push
+    pu = pull
+
+
+
+[core]
+	editor = vim -f
+	quotepath = false
+[difftool "Kaleidoscope"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[diff]
+	tool = Kaleidoscope
