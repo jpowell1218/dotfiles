@@ -40,7 +40,7 @@ imap  <silent> <F5> <Esc> mmgg=G`m^
 set tags=./tags
 
 " Leader b = git blame on all items currenty selected in visual mode
-vmap <Leader>b :<C-U>! git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+" vmap <Leader>b :<C-U>! git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
 if has("autocmd")
   filetype indent on
@@ -91,7 +91,7 @@ set wildmode=list:longest
 " imap ,<tab> <C-x><C-o>
 
 " http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
-set completeopt=longest,menuone
+" set completeopt=longest,menuone
 
 " automatically change working directory to the path of active buffer
 " autocmd BufEnter * lcd %:p:h
@@ -122,13 +122,11 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=DarkOliveGreen ctermbg
 " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=LightSteelBlue4 ctermbg=3
 " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=RoyalBlue4 ctermbg=4
 
-" http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
-:set completeopt=longest,menuone
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+"   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+"   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " DAS - Vim Navigation Screencast
 " Open files with <leader>f
@@ -174,10 +172,10 @@ let g:buffergator_autoexpand_on_split = 0
 " let g:CommandTAcceptSelectionTabMap = '<CR>'
 
 " Ruby Autocomplete from: http://www.cuberick.com/2008/10/ruby-autocomplete-in-vim.html
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " Improve autocomplete menu color
 
 " Change EasyMotion binding
