@@ -5,7 +5,7 @@ require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
 # require 'ap'
 
 # %w[irbtools irbtools/more interactive_editor ap ].each { |lib| require lib }
-%w[irbtools irbtools/more interactive_editor awesome_print].each { |lib| require lib }
+%w[interactive_editor awesome_print].each { |lib| require lib }
 
 if ENV['RAILS_ENV']
   require 'hirb'

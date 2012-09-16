@@ -1,8 +1,3 @@
-" colorscheme Freckle
-" color railscasts railscasts2 railscasts+ solarized jellybeans Tomorrow-Night Freckle tir_black
-" set background=dark
-" colorscheme railscasts
-
 if exists("syntax_on")
   syntax reset
 endif
@@ -16,10 +11,6 @@ set incsearch
 set ignorecase
 set smartcase
 set guifont=Menlo:h12.00
-
-" bind control-l to hashrocket
-imap <C-l> <Space>=><Space>" "
-imap <C-r> <Space><%= %><Space>
 
 " disable arrow keys experiemnt 2/15/2010
 " nnoremap <up> <nop>
@@ -52,6 +43,8 @@ if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
   autocmd BufWritePost .vimrc source ~/.gvimrc
 endif
+
+
 
 set tabstop=2
 set shiftwidth=2
@@ -91,10 +84,6 @@ set splitbelow
 " Auto-completion menu
 set wildmode=list:longest
 
-" commented out 3/2/2012 - to resolve issue with SnipMate
-" Map code completion to , + tab
-" imap ,<tab> <C-x><C-o>
-
 " http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
 " set completeopt=longest,menuone
 
@@ -124,21 +113,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=DarkSeaGreen   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=DarkOliveGreen ctermbg=4
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=LightSteelBlue4 ctermbg=3
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=RoyalBlue4 ctermbg=4
 
-" inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-"   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-" inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-"   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-" DAS - Vim Navigation Screencast
-" Open files with <leader>f
-" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-" Open files, limited to the directory of the current file, with <leader>gf
-" This requires the %% mapping found below.
-" map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
 map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
@@ -148,9 +123,9 @@ map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
 map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts<cr>
 
-:set guicursor
+" :set guicursor
 :set cursorline
-" :set cursorcolumn
+:set cursorcolumn
 
 " :hi CursorLine   cterm=NONE ctermbg=slategrey ctermfg=white guibg=slategrey guifg=white
 " :hi CursorLine   cterm=NONE ctermbg=slategrey ctermfg=white guibg=slategrey guifg=white
@@ -293,29 +268,19 @@ noremap <silent> <Leader>y :TagbarToggle
 
 "=====[COLORIZE CURSOR]=========================================
 "=====[ http://vim.wikia.com/wiki/Configuring_the_cursor & http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
-highlight Cursor guifg=white guibg=steelblue
-highlight iCursor guifg=white guibg=steelblue
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver100-iCursor
-set guicursor+=n-v-c:blinkon0
-set guicursor+=i:blinkwait30
-
 "====[ SETUP COLOR CODING FOR LINES THAT EXCEED 80 COLUMNS ] =====
 " :au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
 " :au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)o
 
 " colorscheme Tomorrow
 " colorscheme tomorrow
+" colorscheme janus-colors
+" colorscheme github
+" colorscheme solarized
+" colorscheme vividchalk
+" colorscheme getafe
+" colorscheme ir_black
 colorscheme Tomorrow-Night
-
-"====[dicking around with cursor colors]
-
- highlight Cursor guifg=white guibg=black
- highlight iCursor guifg=white guibg=steelblue
- set guicursor=n-v-c:block-Cursor
- set guicursor+=i:ver100-iCursor
- set guicursor+=n-v-c:blinkon0
- set guicursor+=i:blinkwait10
 
 " Enable CursorLine
 " set cursorline
@@ -336,3 +301,9 @@ let NERDTreeQuitOnOpen = 1
 :set cc=80
 :hi ColorColumn ctermbg=lightgrey guibg=lightgrey
 " :match ErrorMsg '\%>80v.\+'
+
+" ====[ syntastic - https://github.com/scrooloose/syntastic ]
+" ====[ https://github.com/scrooloose/syntastic/blob/master/doc/syntastic.txt ]
+let g:syntastic_check_on_open=1
+let g:syntastic_echo_current_error=1
+let g:syntastic_auto_jump=1

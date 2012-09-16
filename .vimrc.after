@@ -1,0 +1,107 @@
+" color railscasts
+syntax enable
+set background=dark
+" colorscheme solarized
+
+set tags=./tags;
+
+" Setup ACK to work properly within MacVim
+set grepprg=ack
+
+" let g:ackprg="ack-grep -H --color --column"
+
+" Fix line number margin issue
+set nuw=3
+
+set tags+=ftags
+
+" Allows cmd-r to execute ruby code in Vim (in conjunction with plugin)
+command! FR set filetype=ruby
+
+" Disable audio bell
+set vb
+
+" Exhuberent C-Tags config
+set tags=./tags
+
+" Auto formatting & auto reload .vimrc.local and .gvimrc.local
+if has("autocmd")
+  filetype indent on
+  autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd BufWritePost .vimrc source ~/.gvimrc
+endif
+
+" http://kevin.colyar.net/2011/01/pretty-vim-color-schemes-in-iterm2/
+set t_Co=256
+" colorscheme grb4
+
+if has("autocmd")
+  " Enable filetype detection
+  filetype plugin indent on
+
+  " Restore cursor position
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+endif
+if &t_Co > 2 || has("gui_running")
+  " Enable syntax highlighting
+  syntax on
+endif
+
+set spell
+
+" For use with the interactive_editor gem - restore cursor position and highlight syntax
+" http://vimcasts.org/episodes/running-vim-within-irb/
+"----- BELOW IS A TEST RE: COLOR
+" if has("terminfo")
+"   set t_Co=16
+"   set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
+"   set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
+" else
+"   set t_Co=16
+"   set t_Sf=[3%dm
+"   set t_Sb=[4%dm
+" endif
+
+" syntax on
+ 
+" highlight Comment       ctermfg=DarkGreen
+" highlight Constant      ctermfg=DarkMagenta
+" highlight Character     ctermfg=DarkRed
+" highlight Special       ctermfg=DarkBlue
+" highlight Identifier    ctermfg=DarkCyan
+" highlight Statement     ctermfg=DarkBlue
+" highlight PreProc       ctermfg=DarkBlue
+" highlight Type          ctermfg=DarkBlue
+" highlight Number        ctermfg=DarkBlue
+" highlight Delimiter     ctermfg=DarkBlue
+" highlight Error         ctermfg=Black
+" highlight Todo          ctermfg=DarkBlue
+" highlight WarningMsg    term=NONE           ctermfg=Black ctermbg=NONE   
+" highlight ErrorMsg      term=NONE           ctermfg=DarkRed ctermbg=NONE 
+
+" " These settings only affect the X11 GUI version (which is different
+" " than the fully Carbonized version at homepage.mac.com/fisherbb/
+
+" highlight Comment       guifg=Green                 gui=NONE
+" highlight Constant      guifg=Magenta               gui=NONE
+" highlight Character     guifg=Red                   gui=NONE
+" highlight Special       guifg=Blue                  gui=NONE
+" highlight Identifier    guifg=DarkCyan              gui=NONE
+" highlight Statement     guifg=DarkGreen             gui=NONE
+" highlight PreProc       guifg=Purple                gui=NONE
+" highlight Type          guifg=DarkGreen             gui=NONE
+" "highlight Normal                   guibg=#E0F2FF   gui=NONE
+" highlight Number        guifg=Blue                  gui=NONE
+" "highlight Cursor       guifg=NONE  guibg=Green
+" "highlight Cursor       guifg=bg    guibg=fg
+" highlight Delimiter     guifg=blue                  gui=NONE
+" "highlight NonText                  guibg=lightgray gui=NONE
+" "highlight Error        guifg=White guibg=Red       gui=NONE
+" highlight Error         guifg=NONE  guibg=NONE      gui=NONE
+" highlight Todo          guifg=Blue  guibg=Yellow    gui=NONE
+
+" "#### end color settings #############
+

@@ -1,0 +1,103 @@
+" color railscasts railscasts2 railscasts+ solarized
+" syntax enable
+set background=dark
+colorscheme jellybeans
+
+nmap <space> :
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set guifont=Menlo:h12.00
+
+" bind control-l to hashrocket
+imap <C-l> <Space>=><Space>"
+
+" disable arrow keys experiemnt 2/15/2010
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+
+" Allows cmd-r to execute ruby code in Vim (in conjunction with plugin)
+command! FR set filetype=ruby
+
+" Disable audio bell
+set vb
+
+" http://lucapette.com/vim/rails/vim-for-rails-developers-indenting-code/
+map   <silent> <F5> mmgg=G`m^
+imap  <silent> <F5> <Esc> mmgg=G`m^
+
+" Exhuberent C-Tags config
+set tags=./tags
+
+" Leader b = git blame on all items currenty selected in visual mode
+vmap <Leader>b :<C-U>! git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+if has("iautocmd")
+  filetype indent on
+  autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd BufWritePost .vimrc source ~/.gvimrc
+endif
+
+set tabstop=2
+set shiftwidth=2
+set smartindent
+set autoindent
+
+" Switch between buffers without saving
+set hidden
+
+" Write existing file when switching between files
+" set autowrite
+
+" Reduce delay between leader key and subsequent command
+set timeoutlen=500
+
+" Better line wrapping
+set wrap
+
+" Slightly higher line height
+set linespace=3
+
+" Always show the status line
+set laststatus=2
+
+" Hide MacVim toolbar
+set go-=T
+
+" Hard-wrap paragraphs of text
+nnoremap <leader>q gqip
+
+" Hide Mouse when typing
+set mousehide
+
+" Folding Shortcut - fold tags with leader + ft
+nnoremap <leader>ft Vatzf
+
+" Folding Shortcut - fold tags with leader + cf
+nnoremap <leader>cf Vatzf
+
+" Opens a vertical split and switches over using <leader>v (\v)
+nnoremap <leader>v <C-w>v<C-w>l
+
+" Splits windows below the current window
+set splitbelow
+
+" Auto-completion menu
+set wildmode=list:longest
+
+" Map code completion to , + tab
+imap ,<tab> <C-x><C-o>
+
+" http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+set completeopt=longest,menuone
+
+" automatically change working directory to the path of active buffer
+" autocmd BufEnter * lcd %:p:h
