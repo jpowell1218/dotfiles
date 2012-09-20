@@ -44,8 +44,6 @@ if has("autocmd")
   autocmd BufWritePost .vimrc source ~/.gvimrc
 endif
 
-
-
 set tabstop=2
 set shiftwidth=2
 set smartindent
@@ -254,8 +252,8 @@ nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 
 "=====[INCREASE LINE NUMBER MARGINS]=====================================================
 set nuw=6
-hi LineNr  guifg=#505050   guibg=Black
-hi Normal  guifg=White     guibg=Black
+hi LineNr  guifg=#006699 guibg=Black
+hi Normal  guifg=White   guibg=Black
 
 "=====[EXHUBERENT CTAGS]========
 nmap <F8> :TagbarToggle<CR>
@@ -272,15 +270,13 @@ noremap <silent> <Leader>y :TagbarToggle
 " :au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
 " :au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)o
 
-" colorscheme Tomorrow
-" colorscheme tomorrow
+colorscheme tomorrow
 " colorscheme janus-colors
 " colorscheme github
 " colorscheme solarized
 " colorscheme vividchalk
-" colorscheme getafe
 " colorscheme ir_black
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
 
 " Enable CursorLine
 " set cursorline
