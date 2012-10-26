@@ -44,6 +44,9 @@ if has("autocmd")
   autocmd BufWritePost .vimrc source ~/.gvimrc
 endif
 
+" Execute Ruby code in the current buffer ala Textmate's CMD-R
+map <D-r> :w<CR>:!ruby %<CR>
+
 set tabstop=2
 set shiftwidth=2
 set smartindent
