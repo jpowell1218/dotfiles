@@ -1,6 +1,6 @@
 [user]
-    name = Jeff Powell
-	  email = powellj@mac.com
+	name = Jeff Powell
+	email = powellj@mac.com
 [diff]
 [color]
     ui = auto
@@ -9,6 +9,7 @@
     ci = commit
     co = checkout
     di = diff
+    ap = add -p
     dc = diff --cached
     amend = commit --amend
     aa = add --all
@@ -45,3 +46,9 @@
 
 [merge]
     tool = vimdiff
+[difftool "sourcetree"]
+	cmd = /Applications/Kaleidoscope.app/Contents/MacOS/ksdiff -w \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
