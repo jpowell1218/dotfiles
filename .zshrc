@@ -49,10 +49,30 @@ source $ZSH/oh-my-zsh.sh
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # recommended by brew doctor
-export PATH='/usr/local/bin:/Users/powellj/.rvm/gems/ruby-1.9.2-p290/bin:/Users/powellj/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/powellj/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/powellj/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/Users/powellj/.rvm/bin'
+export PATH='/Users/powellj/projects/subs/bin:/usr/local/bin:/Users/powellj/.rvm/gems/ruby-1.9.2-p290/bin:/Users/powellj/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/powellj/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/powellj/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/Users/powellj/.rvm/bin'
 
 # RVM
 [[ -s '/Users/powellj/.rvm/scripts/rvm' ]] && source '/Users/powellj/.rvm/scripts/rvm'
 
 # Vi mode on command line
 set -o vi
+
+# From Moen re: server loads
+
+function lploads {
+  for server in lp-app1 lp-db-master lp-dj; do
+    __loads $server
+  done
+}
+
+function tlloads {
+  for server in tl-app1 tl-db-master tl-dj; do
+    __loads $server
+  done
+}
+
+function __loads {
+  echo $1
+  ssh $1 uptime
+  ssh $1 iostat
+}

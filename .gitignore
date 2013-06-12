@@ -1,0 +1,9 @@
+.*.swp
+*.tmproj
+log/*
+tmp/*
+.swp
+.DS_Store
+*~
+/.ssh/id_rsa
+/.ssh/known_hosts
