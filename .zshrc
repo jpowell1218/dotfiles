@@ -76,3 +76,5 @@ function __loads {
   ssh $1 uptime
   ssh $1 iostat
 }
+
+CUCUMBER_FORMAT=progress
