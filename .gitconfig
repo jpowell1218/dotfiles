@@ -49,12 +49,24 @@
     ra = !git r --all
     l = "!source ~/.githelpers && pretty_git_log"
     la = !git l --all
-
-[merge]
-    tool = vimdiff
-[difftool "sourcetree"]
-	cmd = /Applications/Kaleidoscope.app/Contents/MacOS/ksdiff -w \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    ksshow = "!f() { local SHA=${1:-HEAD}; git difftool -y -t Kaleidoscope $SHA^..$SHA; }; f"
+    showtool = "!sh -c 'SHA=${1:-HEAD}; git difftool -y -t Kaleidoscope $SHA^..$SHA;' -"
+    reviewtool = "!sh -c 'SHA=${1:-HEAD}; BRANCH=${2:-develop}; if [ $SHA == $BRANCH ] ; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA;' -"
+    review = "!sh -c 'SHA=${1:-HEAD}; BRANCH=${2:-develop}; if [ $SHA == $BRANCH ] ; then SHA=HEAD; fi; git diff $BRANCH...$SHA;' -"
+    
+    [difftool "Kaleidoscope"]
+         cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+    [diff]
+         tool = Kaleidoscope
+    [difftool]
+         prompt = false
+    [mergetool "Kaleidoscope"]
+         cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+         trustExitCode = true
+    [mergetool]
+         prompt = false
+    [merge]
+         tool = Kaleidoscope
+         
+         
+         
